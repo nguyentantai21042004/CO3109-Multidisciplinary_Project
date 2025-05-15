@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  app:
+    build: 
+      context: .
+      network: host
+    container_name: dadn-aibackend
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/AIBackend
+    environment:
+      - FLASK_APP=src/app.py
+      - FLASK_RUN_HOST=0.0.0.0
+      - FLASK_RUN_PORT=8000
+    command: ["flask", "run", "--debug"]
+    # command: ["python", "test_zone/5_test_pinecone_query.py"]
+    # command: ["python", "test_zone/6_test_gpu.py"]
+    # command: ["nvidia-smi"]
+    # command: ["pip", "freeze", ">", "requirements_inner.txt"]
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: 'nvidia'
+              count: 1 # alternatively, use `count: all` for all GPUs
+              capabilities: [gpu]

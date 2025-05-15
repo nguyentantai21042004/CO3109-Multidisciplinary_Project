@@ -1,0 +1,85 @@
+{
+	"info": {
+		"_postman_id": "8dee20e4-ea78-4fd5-9a20-5373e1eb5ffd",
+		"name": "DADN-AIBackend",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31037011"
+	},
+	"item": [
+		{
+			"name": "save",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/D:/GeneralProjectSpace/HKVI/DADN/BTL DADN/test_img/2Q==.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/ai/save/1/4",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"ai",
+						"save",
+						"1",
+						"4"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "find",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "image",
+							"type": "file",
+							"src": "/D:/GeneralProjectSpace/HKVI/DADN/BTL DADN/test_img/2Q==.png"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1:8000/ai/find/1",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "8000",
+					"path": [
+						"ai",
+						"find",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
