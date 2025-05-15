@@ -1,0 +1,8 @@
+.env
+# Loại bỏ thư mục biên dịch Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.vscode
+dataset/
+myenv/

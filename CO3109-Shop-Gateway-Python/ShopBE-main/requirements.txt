@@ -1,0 +1,6 @@
+flask
+opencv-python
+numpy
+paho-mqtt
+python-dotenv
+requests
