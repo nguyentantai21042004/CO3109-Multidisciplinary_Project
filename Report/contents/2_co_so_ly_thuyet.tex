@@ -37,6 +37,33 @@
     \end{itemize}
 \end{itemize}
 
+\subsection{Quy trình xử lý nhận diện khuôn mặt}
+\begin{figure}[h]
+\begin{mermaid}
+sequenceDiagram
+    participant C as Camera
+    participant E as ESP32
+    participant G as Gateway
+    participant AI as AI Service
+    participant DB as Database
+    
+    C->>E: Capture Image
+    E->>E: Basic Processing
+    E->>G: Send Image (MQTT)
+    G->>G: Image Enhancement
+    G->>AI: Face Detection Request
+    AI->>AI: MTCNN Detection
+    AI->>AI: Face Alignment
+    AI->>AI: Feature Extraction
+    AI->>DB: Query Features
+    DB->>AI: Return Matches
+    AI->>G: Recognition Result
+    G->>E: Send Result (MQTT)
+    E->>E: Display Result
+\end{mermaid}
+\caption{Sequence diagram của quy trình nhận diện khuôn mặt}
+\end{figure}
+
 \subsection{Kiến trúc IoT và Edge Computing}
 \hspace{0.5cm}Hệ thống sử dụng kiến trúc IoT kết hợp với edge computing:
 
@@ -175,6 +202,35 @@
     \end{itemize}
 \end{itemize}
 
+\subsection{Quy trình xác thực và ủy quyền}
+\begin{figure}[h]
+\begin{mermaid}
+sequenceDiagram
+    participant C as Client
+    participant A as Auth Service
+    participant R as Resource Service
+    participant D as Database
+    
+    C->>A: Login Request
+    A->>D: Verify Credentials
+    D->>A: User Data
+    A->>A: Generate JWT
+    A->>C: Return JWT + Refresh Token
+    
+    C->>R: API Request + JWT
+    R->>R: Validate JWT
+    R->>D: Query Resources
+    D->>R: Return Data
+    R->>C: Response
+    
+    Note over C,A: Token Refresh Flow
+    C->>A: Refresh Token Request
+    A->>A: Validate Refresh Token
+    A->>C: New JWT
+\end{mermaid}
+\caption{Sequence diagram của quy trình xác thực và ủy quyền}
+\end{figure}
+
 \subsection{Công nghệ Web hiện đại}
 \hspace{0.5cm}Frontend được phát triển với các công nghệ web tiên tiến:
 
@@ -232,4 +288,91 @@
             \item Bundle optimization
         \end{itemize}
     \end{itemize}
-\end{itemize} 
+\end{itemize}
+
+\subsection{Quy trình xử lý real-time}
+\begin{figure}[h]
+\begin{mermaid}
+sequenceDiagram
+    participant D as Device
+    participant G as Gateway
+    participant B as Backend
+    participant W as WebSocket
+    participant C as Client
+    
+    D->>G: Device Event (MQTT)
+    G->>B: Process Event
+    B->>W: Broadcast Update
+    W->>C: Push Notification
+    
+    C->>B: Subscribe Request
+    B->>B: Validate Session
+    B->>C: Connection Established
+    
+    loop Real-time Updates
+        D->>G: Status Update
+        G->>B: Process Update
+        B->>C: Push Update
+    end
+\end{mermaid}
+\caption{Sequence diagram của quy trình xử lý real-time}
+\end{figure}
+
+\subsection{Quy trình triển khai container}
+\begin{figure}[h]
+\begin{mermaid}
+sequenceDiagram
+    participant CI as CI/CD
+    participant R as Registry
+    participant O as Orchestrator
+    participant N as Node
+    participant C as Container
+    
+    CI->>CI: Build Image
+    CI->>R: Push Image
+    CI->>O: Deploy Request
+    
+    O->>O: Check Resources
+    O->>N: Pull Image
+    N->>R: Get Image
+    R->>N: Image Data
+    
+    N->>C: Create Container
+    C->>C: Init Process
+    C->>O: Ready Status
+    
+    O->>O: Update Service
+    O->>CI: Deployment Complete
+\end{mermaid}
+\caption{Sequence diagram của quy trình triển khai container}
+\end{figure}
+
+\subsection{Quy trình đồng bộ dữ liệu}
+\begin{figure}[h]
+\begin{mermaid}
+sequenceDiagram
+    participant D as Device
+    participant C as Cache
+    participant B as Backend
+    participant DB as Database
+    participant S as Storage
+    
+    D->>C: Check Updates
+    C->>B: Sync Request
+    B->>DB: Query Changes
+    DB->>B: Changed Data
+    
+    B->>S: Upload Files
+    S->>B: Storage URLs
+    
+    B->>C: Update Cache
+    C->>D: Send Updates
+    
+    Note over D,S: Periodic Sync
+    loop Every 5 minutes
+        D->>C: Heartbeat
+        C->>B: Status Update
+    end
+\end{mermaid}
+\caption{Sequence diagram của quy trình đồng bộ dữ liệu}
+\end{figure} 
