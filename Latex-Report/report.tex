@@ -1,0 +1,165 @@
+\documentclass{hcmut-report} % view file <hcmut-report.cls>
+
+% Stuffs
+\usepackage{titlesec}
+\usepackage{color}
+\usepackage{setspace}
+\usepackage{booktabs}
+\usepackage{float}
+\usepackage{longtable}
+\usepackage{enumitem}
+
+% Encodings
+\usepackage{gensymb,textcomp}
+
+% Math Formulas
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{graphicx}
+\usepackage{tikz}
+
+% Code Highlighting Format
+\usepackage{codespace}
+
+% Better tables
+% Wide tables go to https://tex.stackexchange.com/q/332902
+\usepackage{array,multicol,multirow,siunitx,tabularx}
+
+% Better enum
+\usepackage{enumitem}
+
+% Graphics
+\usepackage{caption,float}
+
+% Allow setting >max< width of figure
+% 'export' allows adjustbox keys in \includegraphics
+% For demonstration purposes, remove in production
+\usepackage[export]{adjustbox}
+
+% For demonstration purposes, remove in production
+\usepackage{mwe}
+\usepackage{listings}
+\usepackage{minted}
+
+% format subsection
+\titleformat{\section}{\normalfont\Large\bfseries}{\thesection.}{0.5em}{}
+\titleformat{\subsection}[runin]{\normalfont\large\bfseries}{\thesubsection.}{0.5em}{}
+
+% Custom naming
+\usepackage[figurename=Hình]{caption}
+\usepackage[tablename=Bảng]{caption}
+% \usepackage[listtablename=Danh mục bảng]{caption}
+\usepackage[listfigurename=Danh mục hình ảnh]{caption}
+
+% Use case specification table
+\newcommand\tabularhead[1]{
+\begin{longtable}{|p{0.1\linewidth}|p{0.7\linewidth}|}
+  \caption{Usecase <<#1>>} \\
+    \hline
+    \textbf{Usecase} & \textbf{#1} \\
+    \hline
+    \endfirsthead
+    \hline
+    \textbf{Usecase} & \textbf{#1} \\
+    \hline
+    \endhead
+    \hline
+    \endfoot
+}
+
+\newcommand\addrow[2]{#1 & #2\\ \hline}
+
+\newcommand\addmulrow[2]{ 
+    #1 & \begin{minipage}[t]{\linewidth}
+            \vspace{-\topsep} % Remove the space above the enumerate
+            \begin{enumerate}[nolistsep, leftmargin=*] 
+                #2 
+            \end{enumerate}
+            \vspace{\topsep}
+        \end{minipage}\\ \hline
+}
+
+\newcommand\addcondition[2]{ 
+    #1 & \begin{minipage}[t]{\linewidth}
+            \vspace{-\topsep} % Remove the space above the itemize
+            \begin{itemize}[nosep, leftmargin=*] 
+                #2 
+            \end{itemize}
+            \vspace{\topsep}
+        \end{minipage}\\ \hline
+}
+
+\newcommand\addexception[2]{ 
+    #1 & \begin{minipage}[t]{\linewidth}
+            \vspace{-\topsep} % Remove the space above the enumerate
+            \begin{enumerate}[nolistsep, leftmargin=*, label=ex\arabic*.] 
+                #2 
+            \end{enumerate}
+            \vspace{\topsep}
+        \end{minipage}\\ \hline
+}
+    
+\newenvironment{usecase}{\tabularhead}{\hline\end{longtable}}
+
+% Cover Page Definition
+\ocoursename{Lập trình web}
+\odeptname{KHOA KHOA HỌC VÀ KỸ THUẬT MÁY TÍNH}
+\oreporttype{BÁO CÁO BÀI TẬP LỚN}
+\title{Chấm công}
+\oadvisor{\textbf{Nguyễn Hữu Hiếu}}
+\newcounter{memberrowno}
+\setcounter{memberrowno}{0}
+
+% Custom commands
+\newcommand*\mean[1]{\bar{#1}}
+
+\begin{document}
+\coverpage% COVER PAGE IS DEFINED IN <hcmut-report.cls> FILE
+
+\section*{Danh sách thành viên \& đóng góp}
+\begin{doublespace}
+\begin{center}
+  \begin{tabular}{>{\stepcounter{memberrowno}\thememberrowno} c c c c c}
+    \toprule
+    \multicolumn{1}{c}{\textbf{STT}} & \textbf{Họ và Tên}    & \textbf{MSSV} & \textbf{Công việc được giao} & \textbf{Mức độ hoàn thành} \\
+    \midrule
+                                     & Nguyễn Hiệp Tài    & 2212985       & Task 2     &	 100\% \\
+                                     & Dương Hoàng Khôi          & 2211672       & Task 3     & 100\%                 \\
+                                     & Phạm Quang Minh          & 2212075       & Task 4     & 100\%                 \\
+                                     
+    \bottomrule
+  \end{tabular}
+\end{center}
+\end{doublespace}
+
+\newpage % Muc luc
+\tableofcontents
+
+\newpage
+\listoftables
+
+\newpage
+\listoffigures
+
+\newpage
+\include{Chapters/1. Giới thiệu.tex}
+
+\newpage
+\include{Chapters/2. Cơ sở lý thuyết.tex}
+
+\newpage
+\include{Chapters/3. Thiết kế ứng dụng.tex}
+
+\newpage
+\include{Chapters/4. Hiện thực.tex}
+
+\newpage
+\include{Chapters/5. Cài đặt.tex}
+
+% \newpage % Tai lieu tham khao
+\bibliographystyle{plain}
+\bibliography{refs}
+\nocite{*}
+
+\end{document}
