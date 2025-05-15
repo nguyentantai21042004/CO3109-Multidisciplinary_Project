@@ -1,55 +1,55 @@
 \section{Giới thiệu}
 
 \subsection{Bối cảnh nghiên cứu}
-\hspace{0.5cm}Ô nhiễm không khí là một trong những vấn đề môi trường nghiêm trọng nhất hiện nay, đặc biệt là tại các khu vực đô thị. Trong đó, Carbon Monoxide (CO) và Carbon Dioxide (CO2) là hai trong số các chất ô nhiễm không khí quan trọng cần được theo dõi và kiểm soát. CO là một khí độc không màu, không mùi, có thể gây nguy hiểm đến sức khỏe con người khi tiếp xúc ở nồng độ cao. CO2, mặc dù ít độc hơn, nhưng là một trong những khí nhà kính chính góp phần vào biến đổi khí hậu toàn cầu.
+\hspace{0.5cm}Trong bối cảnh số hóa và tự động hóa ngày càng phát triển, việc quản lý nhân sự và điểm danh tại các doanh nghiệp đang dần chuyển đổi từ phương pháp thủ công sang các giải pháp công nghệ hiện đại. Công nghệ nhận diện khuôn mặt, với khả năng xác thực danh tính nhanh chóng và chính xác, đang trở thành một giải pháp hấp dẫn cho bài toán này. Đặc biệt trong thời đại số hóa, việc tích hợp các công nghệ IoT và AI vào hệ thống quản lý doanh nghiệp không chỉ nâng cao hiệu quả mà còn tạo ra trải nghiệm người dùng tốt hơn.
 
 \subsection{Mục tiêu nghiên cứu}
-\hspace{0.5cm}Dự án này tập trung vào việc phát triển các mô hình học máy để dự đoán nồng độ CO và CO2 trong không khí dựa trên bộ dữ liệu Air Quality từ UCI Machine Learning Repository. Cụ thể, các mục tiêu chính bao gồm:
+\hspace{0.5cm}Dự án này tập trung vào việc phát triển một hệ thống điểm danh thông minh sử dụng công nghệ nhận diện khuôn mặt. Các mục tiêu cụ thể bao gồm:
 
 \begin{itemize}
-    \item Phân tích và xử lý dữ liệu từ các cảm biến chất lượng không khí
-    \item Xây dựng các mô hình dự đoán nồng độ CO và CO2
-    \item Đánh giá hiệu suất của các mô hình dự đoán
-    \item Phân tích tầm quan trọng của các yếu tố ảnh hưởng đến nồng độ CO và CO2
+    \item Xây dựng hệ thống nhận diện khuôn mặt chính xác và an toàn
+    \item Phát triển thiết bị điểm danh thông minh dựa trên nền tảng ESP32
+    \item Thiết kế hệ thống quản lý tập trung cho nhiều cửa hàng
+    \item Tạo giao diện web thân thiện cho quản lý và người dùng
+    \item Đảm bảo tính bảo mật và riêng tư của dữ liệu
 \end{itemize}
 
-\subsection{Bộ dữ liệu}
-\hspace{0.5cm}Bộ dữ liệu Air Quality được thu thập từ một thiết bị đa cảm biến khí được triển khai tại một thành phố ở Ý. Dữ liệu bao gồm:
+\subsection{Kiến trúc hệ thống}
+\hspace{0.5cm}Hệ thống được thiết kế với kiến trúc đa tầng, bao gồm:
 
 \begin{itemize}
-    \item Thời gian thu thập: Từ tháng 3/2004 đến tháng 2/2005
-    \item Số lượng mẫu: 9,358 mẫu
-    \item Tần suất: Trung bình theo giờ
-    \item Các đặc trưng chính:
+    \item \textbf{Tầng thiết bị:} ESP32 với camera và màn hình TFT
+    \item \textbf{Tầng xử lý:} 
     \begin{itemize}
-        \item Nồng độ CO (mg/m³)
-        \item Nồng độ các hợp chất hữu cơ không chứa metan (µg/m³)
-        \item Nồng độ Benzen (µg/m³)
-        \item Nồng độ NOx (ppb)
-        \item Nồng độ NO2 (µg/m³)
-        \item Nhiệt độ (°C)
-        \item Độ ẩm tương đối (\%)
-        \item Độ ẩm tuyệt đối (g/m³)
+        \item Gateway Python xử lý ảnh và giao tiếp MQTT
+        \item Dịch vụ nhận diện khuôn mặt AI
+        \item API Backend Go cho quản lý dữ liệu
     \end{itemize}
+    \item \textbf{Tầng giao diện:} Ứng dụng web Angular cho quản lý và giám sát
+    \item \textbf{Tầng dữ liệu:} PostgreSQL, Redis, và Cloudinary
 \end{itemize}
 
-\subsection{Ý nghĩa thực tiễn}
-\hspace{0.5cm}Nghiên cứu này có ý nghĩa quan trọng trong việc:
+\subsection{Công nghệ sử dụng}
+\hspace{0.5cm}Dự án tích hợp nhiều công nghệ hiện đại:
 
 \begin{itemize}
-    \item Cảnh báo sớm về mức độ ô nhiễm không khí
-    \item Hỗ trợ các cơ quan quản lý môi trường trong việc ra quyết định
-    \item Nâng cao nhận thức cộng đồng về chất lượng không khí
-    \item Góp phần vào việc phát triển các hệ thống giám sát chất lượng không khí thông minh
+    \item \textbf{Phần cứng:} ESP32, Camera OV2640, Màn hình TFT ST7789
+    \item \textbf{Backend:} Go 1.23.8, Python 3.8+
+    \item \textbf{Frontend:} Angular 15.2.0, Angular Material
+    \item \textbf{Cơ sở dữ liệu:} PostgreSQL, Redis
+    \item \textbf{Dịch vụ đám mây:} Cloudinary cho lưu trữ ảnh
+    \item \textbf{Giao thức:} MQTT, REST APIs
+    \item \textbf{CI/CD:} Docker, Docker Compose
 \end{itemize}
 
 \subsection{Cấu trúc báo cáo}
 \hspace{0.5cm}Báo cáo được tổ chức thành các phần chính sau:
 
 \begin{itemize}
-    \item Phần 1: Giới thiệu tổng quan về đề tài
-    \item Phần 2: Cơ sở lý thuyết về học máy và các mô hình dự đoán
-    \item Phần 3: Phương pháp nghiên cứu và xử lý dữ liệu
-    \item Phần 4: Kết quả thực nghiệm và đánh giá
-    \item Phần 5: Kết luận và hướng phát triển
+    \item \textbf{Phần 1: Giới thiệu} - Tổng quan về dự án và mục tiêu
+    \item \textbf{Phần 2: Cơ sở lý thuyết} - Các công nghệ và phương pháp sử dụng
+    \item \textbf{Phần 3: Thiết kế hệ thống} - Kiến trúc và chi tiết các thành phần
+    \item \textbf{Phần 4: Triển khai} - Quy trình phát triển và tích hợp
+    \item \textbf{Phần 5: Kết quả và đánh giá} - Hiệu suất và độ chính xác
+    \item \textbf{Phần 6: Kết luận} - Tổng kết và hướng phát triển
 \end{itemize}

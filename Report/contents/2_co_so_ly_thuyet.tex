@@ -1,0 +1,106 @@
+\section{Cơ sở lý thuyết}
+
+\subsection{Công nghệ nhận diện khuôn mặt}
+\hspace{0.5cm}Công nghệ nhận diện khuôn mặt là một lĩnh vực của thị giác máy tính và học sâu, bao gồm các bước chính:
+
+\begin{itemize}
+    \item \textbf{Phát hiện khuôn mặt:} Sử dụng các thuật toán như Haar Cascade hoặc MTCNN
+    \item \textbf{Căn chỉnh khuôn mặt:} Xác định và chuẩn hóa vị trí các điểm đặc trưng
+    \item \textbf{Trích xuất đặc trưng:} Sử dụng mạng neural tích chập (CNN) để tạo vector đặc trưng
+    \item \textbf{So khớp khuôn mặt:} Tính toán độ tương đồng giữa các vector đặc trưng
+\end{itemize}
+
+\subsection{Kiến trúc IoT và Edge Computing}
+\hspace{0.5cm}Hệ thống sử dụng kiến trúc IoT kết hợp với edge computing:
+
+\begin{itemize}
+    \item \textbf{Edge Device (ESP32):}
+    \begin{itemize}
+        \item Vi xử lý lõi kép
+        \item Tích hợp Wi-Fi và Bluetooth
+        \item Xử lý ảnh cơ bản tại thiết bị
+        \item Giao tiếp với gateway qua MQTT
+    \end{itemize}
+    
+    \item \textbf{Gateway Layer:}
+    \begin{itemize}
+        \item Xử lý ảnh trung gian
+        \item Điều phối luồng dữ liệu
+        \item Cache và buffer tạm thời
+        \item Giao tiếp hai chiều với thiết bị
+    \end{itemize}
+\end{itemize}
+
+\subsection{Microservices và Container}
+\hspace{0.5cm}Kiến trúc microservices được áp dụng để tăng tính module hóa và khả năng mở rộng:
+
+\begin{itemize}
+    \item \textbf{Container hóa:}
+    \begin{itemize}
+        \item Sử dụng Docker để đóng gói dịch vụ
+        \item Quản lý với Docker Compose
+        \item Cô lập môi trường triển khai
+        \item Dễ dàng scale và update
+    \end{itemize}
+    
+    \item \textbf{Service Discovery:}
+    \begin{itemize}
+        \item Đăng ký và khám phá dịch vụ
+        \item Load balancing
+        \item Health checking
+        \item Fault tolerance
+    \end{itemize}
+\end{itemize}
+
+\subsection{Bảo mật và Xác thực}
+\hspace{0.5cm}Hệ thống tích hợp nhiều lớp bảo mật:
+
+\begin{itemize}
+    \item \textbf{JWT Authentication:}
+    \begin{itemize}
+        \item Token-based authentication
+        \item Refresh token mechanism
+        \item Role-based access control
+    \end{itemize}
+    
+    \item \textbf{Bảo mật dữ liệu:}
+    \begin{itemize}
+        \item Mã hóa dữ liệu nhạy cảm
+        \item HTTPS cho API endpoints
+        \item Secure WebSocket cho real-time
+    \end{itemize}
+    
+    \item \textbf{Device Security:}
+    \begin{itemize}
+        \item Xác thực thiết bị với API key
+        \item Mã hóa kênh MQTT
+        \item Giới hạn quyền truy cập
+    \end{itemize}
+\end{itemize}
+
+\subsection{Công nghệ Web hiện đại}
+\hspace{0.5cm}Frontend được phát triển với các công nghệ web tiên tiến:
+
+\begin{itemize}
+    \item \textbf{Angular Framework:}
+    \begin{itemize}
+        \item Component-based architecture
+        \item Reactive programming với RxJS
+        \item State management
+        \item Lazy loading modules
+    \end{itemize}
+    
+    \item \textbf{Real-time Features:}
+    \begin{itemize}
+        \item WebSocket cho cập nhật real-time
+        \item Server-Sent Events
+        \item Push notifications
+    \end{itemize}
+    
+    \item \textbf{UI/UX Design:}
+    \begin{itemize}
+        \item Material Design
+        \item Responsive layout
+        \item Progressive Web App (PWA)
+    \end{itemize}
+\end{itemize} 

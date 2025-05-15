@@ -1,0 +1,151 @@
+\section{Triển khai}
+
+\subsection{Thiết bị điểm danh}
+\hspace{0.5cm}Quy trình triển khai thiết bị ESP32:
+
+\begin{itemize}
+    \item \textbf{Phần cứng:}
+    \begin{itemize}
+        \item Lắp ráp ESP32-CAM với màn hình TFT
+        \item Kết nối LED và buzzer
+        \item Thiết kế và in vỏ bảo vệ 3D
+        \item Kiểm tra kết nối và nguồn điện
+    \end{itemize}
+    
+    \item \textbf{Phần mềm:}
+    \begin{itemize}
+        \item Cài đặt Arduino IDE và thư viện
+        \item Nạp firmware cho ESP32
+        \item Cấu hình Wi-Fi và MQTT
+        \item Kiểm tra camera và màn hình
+    \end{itemize}
+\end{itemize}
+
+\subsection{Gateway và AI Service}
+\hspace{0.5cm}Triển khai các dịch vụ xử lý:
+
+\begin{itemize}
+    \item \textbf{Gateway Service:}
+    \begin{itemize}
+        \item Cài đặt Python environment
+        \item Cấu hình MQTT broker
+        \item Thiết lập xử lý ảnh
+        \item Tối ưu hóa performance
+    \end{itemize}
+    
+    \item \textbf{AI Service:}
+    \begin{itemize}
+        \item Cài đặt deep learning framework
+        \item Load pre-trained models
+        \item Cấu hình GPU acceleration
+        \item Triển khai API endpoints
+    \end{itemize}
+\end{itemize}
+
+\subsection{Backend API}
+\hspace{0.5cm}Triển khai backend service:
+
+\begin{itemize}
+    \item \textbf{Cơ sở dữ liệu:}
+    \begin{itemize}
+        \item Cài đặt PostgreSQL
+        \item Thiết lập schema và migration
+        \item Cấu hình backup và replication
+        \item Tối ưu hóa queries
+    \end{itemize}
+    
+    \item \textbf{API Service:}
+    \begin{itemize}
+        \item Triển khai Go microservices
+        \item Cấu hình JWT và RBAC
+        \item Thiết lập rate limiting
+        \item Monitoring và logging
+    \end{itemize}
+    
+    \item \textbf{Cache Layer:}
+    \begin{itemize}
+        \item Cài đặt Redis cluster
+        \item Cấu hình cache policies
+        \item Thiết lập persistence
+        \item Monitoring performance
+    \end{itemize}
+\end{itemize}
+
+\subsection{Frontend Web}
+\hspace{0.5cm}Triển khai ứng dụng web:
+
+\begin{itemize}
+    \item \textbf{Development:}
+    \begin{itemize}
+        \item Setup Angular project
+        \item Cài đặt dependencies
+        \item Implement các components
+        \item Unit testing
+    \end{itemize}
+    
+    \item \textbf{Build và Deployment:}
+    \begin{itemize}
+        \item Optimize bundle size
+        \item Configure CDN
+        \item Setup CI/CD pipeline
+        \item Monitoring và analytics
+    \end{itemize}
+\end{itemize}
+
+\subsection{DevOps và Monitoring}
+\hspace{0.5cm}Thiết lập quy trình DevOps:
+
+\begin{itemize}
+    \item \textbf{Container Orchestration:}
+    \begin{itemize}
+        \item Docker container build
+        \item Docker Compose setup
+        \item Resource allocation
+        \item Service discovery
+    \end{itemize}
+    
+    \item \textbf{CI/CD Pipeline:}
+    \begin{itemize}
+        \item Automated testing
+        \item Build automation
+        \item Deployment automation
+        \item Rollback procedures
+    \end{itemize}
+    
+    \item \textbf{Monitoring:}
+    \begin{itemize}
+        \item System metrics
+        \item Application logs
+        \item Error tracking
+        \item Performance monitoring
+    \end{itemize}
+\end{itemize}
+
+\subsection{Testing và QA}
+\hspace{0.5cm}Quy trình kiểm thử:
+
+\begin{itemize}
+    \item \textbf{Unit Testing:}
+    \begin{itemize}
+        \item Backend service tests
+        \item Frontend component tests
+        \item API endpoint tests
+        \item Database operation tests
+    \end{itemize}
+    
+    \item \textbf{Integration Testing:}
+    \begin{itemize}
+        \item End-to-end testing
+        \item API integration tests
+        \item Device communication tests
+        \item Performance testing
+    \end{itemize}
+    
+    \item \textbf{Security Testing:}
+    \begin{itemize}
+        \item Penetration testing
+        \item Vulnerability scanning
+        \item Security audit
+        \item Compliance checking
+    \end{itemize}
+\end{itemize} 

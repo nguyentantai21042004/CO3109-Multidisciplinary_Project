@@ -1,0 +1,148 @@
+\section{Thiết kế hệ thống}
+
+\subsection{Kiến trúc tổng thể}
+\hspace{0.5cm}Hệ thống được thiết kế theo mô hình phân tầng với các thành phần chính:
+
+\begin{itemize}
+    \item \textbf{Thiết bị điểm danh:}
+    \begin{itemize}
+        \item ESP32 với camera OV2640
+        \item Màn hình TFT ST7789
+        \item LED và buzzer cho phản hồi
+        \item Kết nối Wi-Fi và MQTT
+    \end{itemize}
+    
+    \item \textbf{Gateway và xử lý ảnh:}
+    \begin{itemize}
+        \item Nhận ảnh từ thiết bị qua MQTT
+        \item Tiền xử lý và chuẩn hóa ảnh
+        \item Gửi đến dịch vụ nhận diện
+        \item Xử lý kết quả và phản hồi
+    \end{itemize}
+    
+    \item \textbf{Dịch vụ nhận diện:}
+    \begin{itemize}
+        \item Deep learning model cho face detection
+        \item Face embedding extraction
+        \item Face matching và verification
+        \item API endpoints cho các dịch vụ
+    \end{itemize}
+    
+    \item \textbf{Backend API:}
+    \begin{itemize}
+        \item RESTful API với Go
+        \item Xử lý business logic
+        \item Quản lý dữ liệu và cache
+        \item Authentication và authorization
+    \end{itemize}
+    
+    \item \textbf{Frontend Web:}
+    \begin{itemize}
+        \item Single Page Application
+        \item Responsive design
+        \item Real-time updates
+        \item Progressive Web App
+    \end{itemize}
+\end{itemize}
+
+\subsection{Luồng dữ liệu}
+\hspace{0.5cm}Hệ thống xử lý dữ liệu theo các luồng chính:
+
+\begin{itemize}
+    \item \textbf{Luồng điểm danh:}
+    \begin{enumerate}
+        \item Thiết bị chụp ảnh khuôn mặt
+        \item Gửi ảnh qua MQTT đến gateway
+        \item Gateway xử lý và gửi đến AI service
+        \item Nhận kết quả và cập nhật trạng thái
+        \item Gửi phản hồi về thiết bị và web app
+    \end{enumerate}
+    
+    \item \textbf{Luồng quản lý:}
+    \begin{enumerate}
+        \item Đăng ký/cập nhật thông tin nhân viên
+        \item Upload ảnh khuôn mặt mẫu
+        \item Xử lý và lưu trữ feature vectors
+        \item Cập nhật cơ sở dữ liệu
+        \item Đồng bộ với các thiết bị
+    \end{enumerate}
+\end{itemize}
+
+\subsection{Cơ sở dữ liệu}
+\hspace{0.5cm}Hệ thống sử dụng nhiều loại cơ sở dữ liệu cho các mục đích khác nhau:
+
+\begin{itemize}
+    \item \textbf{PostgreSQL:}
+    \begin{itemize}
+        \item Thông tin người dùng và nhân viên
+        \item Dữ liệu điểm danh
+        \item Cấu hình hệ thống
+        \item Quản lý quyền và vai trò
+    \end{itemize}
+    
+    \item \textbf{Redis Cache:}
+    \begin{itemize}
+        \item Cache session và token
+        \item Feature vectors tạm thời
+        \item Dữ liệu real-time
+        \item Rate limiting
+    \end{itemize}
+    
+    \item \textbf{Cloudinary:}
+    \begin{itemize}
+        \item Lưu trữ ảnh khuôn mặt
+        \item Tối ưu hóa ảnh
+        \item CDN delivery
+        \item Backup và version control
+    \end{itemize}
+\end{itemize}
+
+\subsection{Bảo mật hệ thống}
+\hspace{0.5cm}Các lớp bảo mật được triển khai:
+
+\begin{itemize}
+    \item \textbf{Network Security:}
+    \begin{itemize}
+        \item SSL/TLS encryption
+        \item Firewall rules
+        \item Rate limiting
+        \item DDoS protection
+    \end{itemize}
+    
+    \item \textbf{Application Security:}
+    \begin{itemize}
+        \item Input validation
+        \item SQL injection prevention
+        \item XSS protection
+        \item CSRF tokens
+    \end{itemize}
+    
+    \item \textbf{Data Security:}
+    \begin{itemize}
+        \item Encryption at rest
+        \item Secure data transmission
+        \item Access control
+        \item Audit logging
+    \end{itemize}
+\end{itemize}
+
+\subsection{Khả năng mở rộng}
+\hspace{0.5cm}Hệ thống được thiết kế để dễ dàng mở rộng:
+
+\begin{itemize}
+    \item \textbf{Horizontal Scaling:}
+    \begin{itemize}
+        \item Load balancing
+        \item Service replication
+        \item Database sharding
+        \item Cache distribution
+    \end{itemize}
+    
+    \item \textbf{Feature Extension:}
+    \begin{itemize}
+        \item Plugin architecture
+        \item API versioning
+        \item Feature flags
+        \item Backward compatibility
+    \end{itemize}
+\end{itemize} 
