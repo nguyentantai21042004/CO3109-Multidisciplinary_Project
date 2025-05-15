@@ -1,0 +1,23 @@
+<div class="business-dialog-container">
+  <h2>Chọn doanh nghiệp</h2>
+  
+  <div class="business-list">
+    <div *ngFor="let business of businesses" class="business-card" (click)="selectBusiness(business)">
+      <div class="business-header">
+        <img [src]="business.logo" alt="Logo" class="business-logo" (error)="setDefaultImage($event)">
+        <div class="business-info">
+          <h3>{{ business.name }}</h3>
+          <p class="position">{{ business.position }}</p>
+        </div>
+      </div>
+      <button class="access-button" (click)="selectBusiness(business); $event.stopPropagation()">
+        Truy cập
+      </button>
+    </div>
+  </div>
+
+  <div class="dialog-footer">
+    <p>Phần mềm quản lý nhân sự thế hệ mới</p>
+    <p class="subtitle">Giải quyết tốt các vấn đề của bạn</p>
+  </div>
+</div>

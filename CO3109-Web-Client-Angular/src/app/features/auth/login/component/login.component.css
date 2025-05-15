@@ -1,0 +1,187 @@
+/* Layout chính */
+.login-page {
+	display: flex;
+	min-height: 100vh;
+	max-height: 100vh; /* Giới hạn chiều cao tối đa */
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	overflow: hidden; /* Ngăn cuộn toàn trang */
+  }
+  
+  /* Phần bên trái với hình ảnh */
+  .login-left {
+	flex: 1;
+	background: linear-gradient(135deg, #2ecc71, #27ae60);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 2rem;
+  }
+  
+  .brand-container {
+	max-width: 400px;
+	text-align: center;
+	color: white;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+  }
+  
+  .brand-image {
+	width: auto;
+	height: auto;
+	margin-bottom: 1.5rem;
+  }
+  
+  .brand-slogan h1 {
+	font-size: 2rem;
+	margin-bottom: 0.5rem;
+	font-weight: 600;
+  }
+  
+  .brand-slogan p {
+	font-size: 1rem;
+	opacity: 0.9;
+  }
+  
+  /* Phần bên phải với form đăng nhập */
+  .login-right {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #f8fafc;
+	padding: 1rem; /* Giảm padding từ 2rem xuống 1rem */
+  }
+  
+  .login-form-container {
+	width: 100%;
+	max-width: 440px;
+	padding: 1.5rem; /* Giảm padding từ 2rem xuống 1.5rem */
+	background: white;
+	border-radius: 10px;
+	box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+	max-height: 90vh; /* Giới hạn chiều cao tối đa của form */
+	overflow-y: auto; /* Thêm cuộn nếu nội dung vượt quá */
+  }
+  
+  .login-form-container h2 {
+	font-size: 1.8rem;
+	color: #2c3e50;
+	margin-bottom: 0.3rem; /* Giảm margin-bottom từ 0.5rem xuống 0.3rem */
+	text-align: center;
+  }
+  
+  .welcome-text {
+	color: #7f8c8d;
+	margin-bottom: 1.5rem; /* Giảm margin-bottom từ 2rem xuống 1.5rem */
+	font-size: 1rem;
+	text-align: center;
+  }
+  
+  .form-group {
+	margin-bottom: 1rem; /* Giảm margin-bottom từ 1.2rem xuống 1rem */
+  }
+  
+  .form-group label {
+	display: block;
+	margin-bottom: 0.4rem; /* Giảm margin-bottom từ 0.5rem xuống 0.4rem */
+	color: #34495e;
+	font-weight: 500;
+  }
+  
+  .form-group input {
+	width: 100%;
+	padding: 0.7rem; /* Giảm padding từ 0.8rem xuống 0.7rem */
+	border: 1px solid #e2e8f0;
+	border-radius: 6px;
+	font-size: 1rem;
+	transition: all 0.2s;
+  }
+  
+  .form-group input:focus {
+	outline: none;
+	border-color: #2ecc71;
+	box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.1);
+  }
+  
+  .form-options {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 0.8rem 0; /* Giảm margin từ 1rem xuống 0.8rem */
+  }
+  
+  .remember-me {
+	display: flex;
+	align-items: center;
+	color: #7f8c8d;
+	font-size: 0.9rem;
+  }
+  
+  .forgot-password {
+	color: #3498db;
+	text-decoration: none;
+	font-size: 0.9rem;
+  }
+  
+  .login-button {
+	width: 100%;
+	padding: 0.8rem; /* Giảm padding từ 1rem xuống 0.8rem */
+	background: linear-gradient(135deg, #2ecc71, #27ae60);
+	color: white;
+	border: none;
+	border-radius: 6px;
+	font-size: 1rem;
+	font-weight: 500;
+	cursor: pointer;
+	margin-bottom: 1.2rem; /* Giảm margin-bottom từ 1.5rem xuống 1.2rem */
+	transition: all 0.2s;
+  }
+  
+  .login-button:hover {
+	background: linear-gradient(135deg, #27ae60, #219653);
+	box-shadow: 0 4px 12px rgba(46, 204, 113, 0.2);
+  }
+  
+  .signup-link {
+	text-align: center;
+	color: #7f8c8d;
+	font-size: 0.9rem;
+  }
+  
+  .signup-link a {
+	color: #3498db;
+	text-decoration: none;
+	font-weight: 500;
+  }
+  
+  .is-invalid {
+	border-color: #e74c3c !important;
+  }
+  
+  .error-message {
+	color: #e74c3c;
+	font-size: 0.85rem;
+	margin-top: 0.3rem;
+	text-align: center;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+	.login-page {
+	  flex-direction: column;
+	  max-height: none; /* Bỏ giới hạn chiều cao khi ở màn hình nhỏ */
+	}
+	
+	.login-left {
+	  padding: 2rem 1rem;
+	}
+	
+	.login-right {
+	  padding: 1rem;
+	}
+  
+	.login-form-container {
+	  max-height: none; /* Bỏ giới hạn chiều cao khi ở màn hình nhỏ */
+	}
+  }

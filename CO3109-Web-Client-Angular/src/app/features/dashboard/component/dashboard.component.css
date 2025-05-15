@@ -1,0 +1,147 @@
+.dashboard-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 1rem;
+}
+
+.dashboard-header h1 {
+  font-size: 2rem;
+  color: #2c3e50;
+}
+
+.month-selector {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.badge {
+  background-color: #2ecc71;
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 1.3rem;
+}
+
+.business-info {
+  margin-bottom: 2rem;
+}
+
+.business-info h2 {
+  font-size: 1.5rem;
+  color: #1e293b;
+  margin-bottom: 0.5rem;
+}
+
+.position {
+  color: #64748b;
+  font-size: 1rem;
+}
+
+.schedule-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1.5rem;
+}
+
+.day-card {
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1.2rem;
+  transition: all 0.2s;
+}
+
+.day-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+.day-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.day-name {
+  font-weight: 600;
+  color: #2c3e50;
+}
+
+.day-date {
+  color: #64748b;
+}
+
+.day-content p {
+  margin: 0.5rem 0;
+  color: #475569;
+}
+
+.status-indicator {
+  color: #2ecc71;
+  font-weight: bold;
+  font-size: 1.2rem;
+  text-align: right;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .schedule-container {
+    grid-template-columns: 1fr;
+  }
+  
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}
+
+.month-selector button {
+  background: none;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+  padding: 0.3rem 0.8rem;
+  cursor: pointer;
+  margin: 0 0.5rem;
+}
+
+.month-selector button:hover {
+  background-color: #f1f5f9;
+}
+
+/* Nút đăng ký khuôn mặt */
+.face-reg-btn {
+  background-color: #4f46e5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.2s;
+}
+
+.face-reg-btn:hover {
+  background-color: #4338ca;
+}
+
+.face-reg-btn .icon {
+  width: 16px;
+  height: 16px;
+  fill: currentColor; /* Màu icon sẽ bằng màu chữ */
+}

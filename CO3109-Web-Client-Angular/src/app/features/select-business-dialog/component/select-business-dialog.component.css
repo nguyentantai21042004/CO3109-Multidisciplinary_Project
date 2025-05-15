@@ -1,0 +1,152 @@
+/* Cơ bản cho dialog */
+.business-dialog-container {
+  max-width: 800px;
+  width: 550px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Tiêu đề dialog */
+.business-dialog-container h2 {
+  font-size: 24px;
+  color: #2c3e50;
+  margin-bottom: 20px;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* Danh sách doanh nghiệp */
+.business-list {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 8px;
+  margin-bottom: 16px;
+}
+
+/* Thiết kế thẻ doanh nghiệp */
+.business-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  margin-bottom: 12px;
+  background: #f8fafc;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.business-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: #cbd5e0;
+}
+
+/* Phần thông tin doanh nghiệp */
+.business-header {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.business-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  object-fit: cover;
+  margin-right: 16px;
+  border: 1px solid #e2e8f0;
+  background-color: white;
+  padding: 4px;
+}
+
+.business-info {
+  flex: 1;
+}
+
+.business-info h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #1e293b;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.position {
+  margin: 0;
+  font-size: 14px;
+  color: #64748b;
+  display: flex;
+  align-items: center;
+}
+
+.position:before {
+  content: "•";
+  margin-right: 6px;
+  color: #94a3b8;
+}
+
+/* Nút truy cập */
+.access-button {
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  min-width: 100px;
+  text-align: center;
+}
+
+.access-button:hover {
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+}
+
+/* Footer dialog */
+.dialog-footer {
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid #f1f5f9;
+  text-align: center;
+}
+
+.dialog-footer p {
+  margin: 4px 0;
+  color: #64748b;
+  font-size: 14px;
+}
+
+.dialog-footer .subtitle {
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+/* Scrollbar tùy chỉnh */
+.business-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.business-list::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 3px;
+}
+
+.business-list::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.business-list::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}

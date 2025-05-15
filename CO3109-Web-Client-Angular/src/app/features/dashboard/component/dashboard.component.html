@@ -1,0 +1,56 @@
+<div class="dashboard-container">
+  <header class="dashboard-header">
+    <h1>Dashboard</h1>
+    <div class="month-selector">
+      <span class="badge">Bảng chấm công</span>
+      <button (click)="changeMonth(-1)">&lt;</button>
+      <span>{{ currentMonth }}</span>
+      <button (click)="changeMonth(1)">&gt;</button>
+      
+    </div>
+
+    <!-- Nút đăng ký khuôn mặt với SVG -->
+    <button class="face-reg-btn" (click)="openFaceRegistration()">
+      <svg class="icon" viewBox="0 0 24 24">
+        <path fill="currentColor" d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2m8 3a5 5 0 0 0-5 5a5 5 0 0 0 5 5a5 5 0 0 0 5-5a5 5 0 0 0-5-5m0 2a3 3 0 0 1 3 3a3 3 0 0 1-3 3a3 3 0 0 1-3-3a3 3 0 0 1 3-3z"/>
+      </svg>
+      Đăng ký khuôn mặt
+    </button>
+  </header>
+
+  <section class="business-info">
+    <h2>{{ businessName }}</h2>
+    <p class="position">{{ position }}</p>
+  </section>
+
+  <div class="schedule-container">
+    <div class="day-card" *ngFor="let day of schedule">
+      <div class="day-header">
+        <span class="day-name">{{ day.dayName }}</span>
+        <span class="day-date">{{ day.date }}</span>
+      </div>
+      <div class="day-content">
+        <p>{{ day.shift }}</p>
+        <div class="status-indicator">{{ day.status }}</div>
+      </div>
+    </div>
+  </div>
+
+
+  <div *ngIf="isLoading; else scheduleContent">
+    <p>Đang tải dữ liệu...</p>
+  </div>
+  
+  <ng-template #scheduleContent>
+    <div class="schedule-container" *ngIf="schedule.length > 0; else noData">
+      <!-- Hiển thị lịch -->
+    </div>
+  </ng-template>
+  
+  <ng-template #noData>
+    <p>Không có dữ liệu lịch làm việc</p>
+  </ng-template>
+
+
+
+</div>
