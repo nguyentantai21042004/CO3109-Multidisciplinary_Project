@@ -1,80 +1,161 @@
-# CO3109 - Shop Gateway Python
+# CO3109 - Đồ Án Đa Ngành: Hệ Thống Điểm Danh Bằng Nhận Diện Khuôn Mặt
 
-Phần mềm này là một thành phần của dự án môn CO3109-Multidisciplinary Project, đảm nhiệm việc xử lý và so sánh khuôn mặt của nhân viên với cơ sở dữ liệu có sẵn.
+Một hệ thống điểm danh toàn diện dựa trên công nghệ nhận diện khuôn mặt, kết hợp thiết bị phần cứng, xử lý AI và giao diện quản lý web để cung cấp giải pháp điểm danh hiện đại cho doanh nghiệp.
 
-## Tổng quan hệ thống
+## 🌟 Tổng Quan Hệ Thống
 
-Hệ thống này hoạt động như một gateway để:
-1. Nhận ảnh khuôn mặt từ các thiết bị
-2. Xử lý và so sánh với dữ liệu khuôn mặt có sẵn của nhân viên
-3. Gửi kết quả xác thực qua MQTT đến Adafruit
+Dự án bao gồm nhiều thành phần kết nối với nhau để tạo thành một giải pháp quản lý điểm danh hoàn chỉnh:
 
-## Cấu trúc hệ thống
+### Các Thành Phần Chính
 
+1. **Ứng Dụng Web (Angular)** - `CO3109-Web-Client-Angular/`
+   - Giao diện người dùng cho doanh nghiệp và nhân viên
+   - Đăng ký và quản lý khuôn mặt
+   - Bảng điều khiển và báo cáo điểm danh
+   - Kiểm soát truy cập theo vai trò
+
+2. **API Backend (GoLang)** - `CO3109-API-GoLang/`
+   - Dịch vụ RESTful API
+   - Quản lý người dùng và doanh nghiệp
+   - Xác thực và phân quyền
+   - Lưu trữ dữ liệu và xử lý logic nghiệp vụ
+
+3. **Thiết Bị Điểm Danh (ESP32)** - `CO3109-Face-Check-In/`
+   - Thiết bị phần cứng chụp ảnh khuôn mặt
+   - Phát hiện khuôn mặt thời gian thực
+   - Tích hợp MQTT để giao tiếp với máy chủ
+   - Giao diện hiển thị TFT tương tác
+
+4. **Gateway Cửa Hàng (Python)** - `CO3109-Shop-Gateway-Python/`
+   - Xử lý và xác minh khuôn mặt
+   - Giao tiếp MQTT với thiết bị
+   - Xử lý và lưu trữ ảnh tạm thời
+   - Tích hợp với dịch vụ AI
+
+5. **Dịch Vụ Nhận Diện (Python)** - `CO3109-Avatar-Recognize-Python/`
+   - Nhận diện khuôn mặt bằng AI
+   - Trích xuất đặc trưng khuôn mặt
+   - So sánh với khuôn mặt đã đăng ký
+   - Khả năng xử lý thời gian thực
+
+## 🔧 Công Nghệ Sử Dụng
+
+- **Frontend**: Angular 15.2.0, Angular Material
+- **Backend**: Go 1.23.8, PostgreSQL
+- **Xử Lý AI**: Python, OpenCV, Thư viện Face Recognition
+- **Thiết Bị IoT**: ESP32, FreeRTOS, Arduino Framework
+- **Giao Tiếp**: MQTT, REST APIs
+- **Lưu Trữ**: PostgreSQL, Redis, Cloudinary
+- **Hàng Đợi**: RabbitMQ
+
+## 🏗 Kiến Trúc Hệ Thống
+
+```mermaid
+graph TD
+    A[Thiết Bị ESP32] -->|MQTT| B[Gateway Cửa Hàng]
+    B -->|HTTP| C[Nhận Diện Avatar]
+    B -->|MQTT| D[Adafruit IO]
+    E[Ứng Dụng Web] -->|HTTP| F[API Backend]
+    F -->|Cơ Sở Dữ Liệu| G[(PostgreSQL)]
+    F -->|Bộ Nhớ Đệm| H[(Redis)]
+    F -->|Hàng Đợi| I[RabbitMQ]
+    F -->|Lưu Trữ| J[Cloudinary]
 ```
-project_root/
-├── main.py                 # File chính, chạy gateway + xử lý nhận diện
-├── gateway.py              # Flask server nhận ảnh, gọi face_check
-├── Tools/
-│   ├── Gateway/
-│   │   ├── face_check.py   # Module kiểm tra khuôn mặt với DB
-│   │   ├── mqtt_client.py  # Kết nối và gửi MQTT đến Adafruit
-│   │   └── image_utils.py  # Xử lý ảnh (giải mã, lưu trữ)
-│   └── send_image/
-│       ├── haarcascade_frontalface_default.xml  # Model phát hiện mặt
-│       ├── mac_map.json    # Map MAC address → shopID
-│       └── send_image.py   # Module gửi ảnh test từ webcam
-├── dataset/               # Thư mục lưu ảnh tạm thời
-├── .env                  # Cấu hình môi trường (MQTT, API keys)
-└── requirements.txt      # Thư viện Python cần thiết
 
-```
+## 📦 Cài Đặt & Thiết Lập
 
-## Cài đặt và Cấu hình
+Mỗi thành phần có hướng dẫn cài đặt riêng. Vui lòng tham khảo các tệp README trong thư mục của từng thành phần:
 
-### 1. Cài đặt thư viện
+- [Cài Đặt Ứng Dụng Web](./CO3109-Web-Client-Angular/README.md)
+- [Cài Đặt API Backend](./CO3109-API-GoLang/README.md)
+- [Cài Đặt Thiết Bị Điểm Danh](./CO3109-Face-Check-In/README.md)
+- [Cài Đặt Gateway Cửa Hàng](./CO3109-Shop-Gateway-Python/README.md)
+- [Cài Đặt Dịch Vụ Nhận Diện](./CO3109-Avatar-Recognize-Python/README.md)
 
-```bash
-pip install -r requirements.txt
-```
+## 🚀 Bắt Đầu Sử Dụng
 
-### 2. Cấu hình môi trường
+1. Thiết lập dịch vụ API Backend
+2. Triển khai ứng dụng Web Client
+3. Cấu hình và triển khai Gateway Cửa Hàng
+4. Thiết lập dịch vụ Nhận Diện Avatar
+5. Lập trình và triển khai thiết bị ESP32
+6. Cấu hình kết nối MQTT và biến môi trường
 
-Tạo file `.env` với các thông tin:
+## 🔐 Tính Năng Bảo Mật
 
-```
-AIO_USERNAME=your_username
-AIO_KEY=your_key
-AIO_HOST=io.adafruit.com
-AIO_PORT=1883
-```
+- Xác thực dựa trên JWT
+- Kiểm soát truy cập theo vai trò
+- Truyền dữ liệu khuôn mặt an toàn
+- Lưu trữ mã hóa
+- Thực thi HTTPS
+- Quản lý khóa API
 
-## Chạy hệ thống
+## 📱 Tính Năng
 
-1. Khởi động gateway:
-```bash
-python main.py
-```
+### Quản Lý Doanh Nghiệp
+- Hỗ trợ nhiều doanh nghiệp
+- Quản lý nhân viên
+- Theo dõi điểm danh
+- Báo cáo và phân tích
 
-2. Gateway sẽ chạy tại `http://localhost:5000/` và sẵn sàng nhận requests
+### Nhận Diện Khuôn Mặt
+- Phát hiện khuôn mặt thời gian thực
+- Trích xuất đặc trưng khuôn mặt
+- Độ chính xác cao khi so khớp
+- Thời gian phản hồi nhanh
 
-3. API Endpoints:
-- POST `/check_face`: Nhận ảnh và shopID, trả về kết quả xác thực
+### Quản Lý Thiết Bị
+- Cấu hình thiết bị từ xa
+- Giám sát trạng thái
+- Cập nhật firmware
+- Xử lý lỗi
 
-## Luồng xử lý
+### Giao Diện Người Dùng
+- Thiết kế web đáp ứng
+- Bảng điều khiển tương tác
+- Cập nhật thời gian thực
+- Tương thích thiết bị di động
 
-1. Client gửi ảnh khuôn mặt và shopID đến gateway
-2. Gateway xử lý ảnh và so sánh với database
-3. Kết quả được gửi về client và đồng thời publish lên Adafruit qua MQTT
-4. Các thiết bị khác có thể subscribe để nhận kết quả
+## 🛠 Phát Triển
 
-## Testing
+### Yêu Cầu Hệ Thống
+- Node.js và npm
+- Go 1.23.8
+- Python 3.8+
+- Docker và Docker Compose
+- PostgreSQL
+- Redis
+- RabbitMQ
+- Môi trường phát triển ESP32
 
-Sử dụng module `send_image.py` để test hệ thống:
-1. Chạy main.py
-2. Gõ 'start' để bắt đầu chụp và gửi ảnh test
-3. Gõ 'exit' để thoát
+### Công Cụ Phát Triển
+- VS Code hoặc IDE ưa thích
+- PlatformIO cho phát triển ESP32
+- Postman để kiểm thử API
+- Git để quản lý mã nguồn
 
-## Đóng góp
+## 📄 Tài Liệu
 
-Dự án này là một phần của môn CO3109-Multidisciplinary Project tại HCMUT.
+- Tài Liệu API: Có sẵn qua Swagger tại `http://[api-host]/swagger/index.html`
+- Tài Liệu Thành Phần: Xem các tệp README trong thư mục của từng thành phần
+- Tài Liệu Kiến Trúc: Có sẵn trong wiki dự án
+
+## 🤝 Đóng Góp
+
+Dự án này là một phần của môn CO3109-Đồ Án Đa Ngành tại HCMUT. Chúng tôi chào đón các đóng góp thông qua:
+- Báo cáo lỗi
+- Đề xuất tính năng
+- Pull request
+- Cải thiện tài liệu
+
+## 📝 Giấy Phép
+
+Dự án này được cấp phép theo Giấy Phép MIT - xem tệp LICENSE để biết chi tiết.
+
+## 👥 Nhóm Phát Triển
+
+- Nhóm Phát Triển Backend
+- Nhóm Phát Triển Frontend
+- Nhóm Phát Triển Thiết Bị IoT
+- Nhóm AI/ML
+- Nhóm Tích Hợp
