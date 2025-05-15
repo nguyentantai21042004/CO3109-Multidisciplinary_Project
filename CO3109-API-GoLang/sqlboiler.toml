@@ -1,0 +1,18 @@
+wipe=true                                 # Each time new code is generated, completely wipe out the old one.
+output="internal/models"                  # Directory in which the generated static code is to be kept.
+pkgname="models"                          # The `go` package name used in the generated code.
+add-global-variant=true                   # Adds global variant of the generated functions, more on this later.
+add-enum-types=true                       # Generates code for enum types as well.
+no-hooks=true                             # No hooks are generated.
+no-tests=true                             # No tests are generated.
+add-soft-deletes=true                     # Adds soft delete functionality.
+auto-columns=["created_at", "updated_at"] # Automatically set created_at and updated_at timestamps
+
+[psql]
+dbname = "postgres"
+host = "localhost"
+port = 5432
+user = "postgres"
+pass = "postgres"
+sslmode = "disable"
+blacklist = ["schema_migrations"]

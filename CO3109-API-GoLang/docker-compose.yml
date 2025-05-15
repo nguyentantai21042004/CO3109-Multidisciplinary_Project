@@ -1,0 +1,30 @@
+services:
+  api:
+    container_name: api
+    build:
+      context: .
+      dockerfile: cmd/api/Dockerfile
+    image: authenticate-api:latest
+    env_file:
+      - .env.production
+    ports:
+      - "8085:8085"
+    networks:
+      local-dev_default:
+      
+  consumer:
+    container_name: consumer
+    build:
+      context: .
+      dockerfile: cmd/consumer/Dockerfile
+    image: authenticate-consumer:latest
+    env_file:
+      - .env.production
+    depends_on:
+      - api
+    networks:
+      local-dev_default:
+
+networks:
+  local-dev_default:
+    external: true
