@@ -4,10 +4,37 @@
 \hspace{0.5cm}Công nghệ nhận diện khuôn mặt là một lĩnh vực của thị giác máy tính và học sâu, bao gồm các bước chính:
 
 \begin{itemize}
-    \item \textbf{Phát hiện khuôn mặt:} Sử dụng các thuật toán như Haar Cascade hoặc MTCNN
-    \item \textbf{Căn chỉnh khuôn mặt:} Xác định và chuẩn hóa vị trí các điểm đặc trưng
-    \item \textbf{Trích xuất đặc trưng:} Sử dụng mạng neural tích chập (CNN) để tạo vector đặc trưng
-    \item \textbf{So khớp khuôn mặt:} Tính toán độ tương đồng giữa các vector đặc trưng
+    \item \textbf{Phát hiện khuôn mặt:}
+    \begin{itemize}
+        \item \textit{Haar Cascade:} Phương pháp truyền thống sử dụng bộ lọc Haar và AdaBoost
+        \item \textit{MTCNN (Multi-Task Cascaded CNN):} Mạng neural 3 giai đoạn cho phát hiện và căn chỉnh
+        \item \textit{RetinaFace:} Mô hình hiện đại với độ chính xác cao trong nhiều điều kiện
+        \item Xử lý các thách thức: góc nghiêng, ánh sáng, che khuất
+    \end{itemize}
+    
+    \item \textbf{Căn chỉnh khuôn mặt:}
+    \begin{itemize}
+        \item \textit{Facial Landmarks:} Xác định 68 điểm đặc trưng trên khuôn mặt
+        \item \textit{Affine Transformation:} Chuẩn hóa vị trí và góc nghiêng
+        \item \textit{Face Alignment:} Căn chỉnh theo mắt và mũi
+        \item Xử lý biến dạng và chuẩn hóa kích thước
+    \end{itemize}
+    
+    \item \textbf{Trích xuất đặc trưng:}
+    \begin{itemize}
+        \item \textit{Deep CNN Architecture:} Sử dụng mạng ResNet-50 hoặc MobileNetV2
+        \item \textit{Feature Embedding:} Vector 512 chiều đặc trưng cho mỗi khuôn mặt
+        \item \textit{Triplet Loss:} Huấn luyện để tối ưu khoảng cách giữa các embedding
+        \item Tăng cường dữ liệu và xử lý nhiễu
+    \end{itemize}
+    
+    \item \textbf{So khớp khuôn mặt:}
+    \begin{itemize}
+        \item \textit{Cosine Similarity:} Đo độ tương đồng giữa các vector đặc trưng
+        \item \textit{Threshold Optimization:} Cân bằng giữa false positive và false negative
+        \item \textit{Face Verification:} Xác thực danh tính dựa trên ngưỡng tương đồng
+        \item Xử lý các trường hợp đặc biệt và ngoại lệ
+    \end{itemize}
 \end{itemize}
 
 \subsection{Kiến trúc IoT và Edge Computing}
@@ -16,18 +43,53 @@
 \begin{itemize}
     \item \textbf{Edge Device (ESP32):}
     \begin{itemize}
-        \item Vi xử lý lõi kép
-        \item Tích hợp Wi-Fi và Bluetooth
-        \item Xử lý ảnh cơ bản tại thiết bị
-        \item Giao tiếp với gateway qua MQTT
+        \item \textit{Hardware Architecture:} 
+        \begin{itemize}
+            \item CPU: Xtensa dual-core 32-bit LX6 (240MHz)
+            \item RAM: 520KB SRAM
+            \item Flash: 4MB external flash
+            \item Camera: OV2640 2MP sensor
+            \item Display: ST7789 1.3" TFT LCD
+        \end{itemize}
+        \item \textit{Software Stack:}
+        \begin{itemize}
+            \item FreeRTOS kernel
+            \item ESP-IDF framework
+            \item MQTT client library
+            \item TFT_eSPI graphics library
+        \end{itemize}
+        \item \textit{Edge Processing:}
+        \begin{itemize}
+            \item Image capture và preprocessing
+            \item Basic face detection
+            \item Data compression và buffering
+            \item Local decision making
+        \end{itemize}
     \end{itemize}
     
     \item \textbf{Gateway Layer:}
     \begin{itemize}
-        \item Xử lý ảnh trung gian
-        \item Điều phối luồng dữ liệu
-        \item Cache và buffer tạm thời
-        \item Giao tiếp hai chiều với thiết bị
+        \item \textit{Hardware Requirements:}
+        \begin{itemize}
+            \item Multi-core processor
+            \item Minimum 4GB RAM
+            \item SSD storage
+            \item Stable network connection
+        \end{itemize}
+        \item \textit{Software Components:}
+        \begin{itemize}
+            \item MQTT broker (Mosquitto)
+            \item Python processing service
+            \item Redis cache
+            \item Monitoring agents
+        \end{itemize}
+        \item \textit{Processing Pipeline:}
+        \begin{itemize}
+            \item Image decompression
+            \item Quality assessment
+            \item Feature extraction
+            \item Load balancing
+        \end{itemize}
     \end{itemize}
 \end{itemize}
 
@@ -35,20 +97,40 @@
 \hspace{0.5cm}Kiến trúc microservices được áp dụng để tăng tính module hóa và khả năng mở rộng:
 
 \begin{itemize}
-    \item \textbf{Container hóa:}
+    \item \textbf{Service Architecture:}
     \begin{itemize}
-        \item Sử dụng Docker để đóng gói dịch vụ
-        \item Quản lý với Docker Compose
-        \item Cô lập môi trường triển khai
-        \item Dễ dàng scale và update
+        \item \textit{Core Services:}
+        \begin{itemize}
+            \item Authentication Service
+            \item Face Recognition Service
+            \item Device Management Service
+            \item Data Analytics Service
+        \end{itemize}
+        \item \textit{Supporting Services:}
+        \begin{itemize}
+            \item Logging Service
+            \item Monitoring Service
+            \item Configuration Service
+            \item Notification Service
+        \end{itemize}
     \end{itemize}
     
-    \item \textbf{Service Discovery:}
+    \item \textbf{Container Management:}
     \begin{itemize}
-        \item Đăng ký và khám phá dịch vụ
-        \item Load balancing
-        \item Health checking
-        \item Fault tolerance
+        \item \textit{Docker Configuration:}
+        \begin{itemize}
+            \item Multi-stage builds
+            \item Layer optimization
+            \item Security hardening
+            \item Resource limits
+        \end{itemize}
+        \item \textit{Orchestration:}
+        \begin{itemize}
+            \item Service discovery
+            \item Load balancing
+            \item Health monitoring
+            \item Auto-scaling
+        \end{itemize}
     \end{itemize}
 \end{itemize}
 
@@ -56,25 +138,40 @@
 \hspace{0.5cm}Hệ thống tích hợp nhiều lớp bảo mật:
 
 \begin{itemize}
-    \item \textbf{JWT Authentication:}
+    \item \textbf{Authentication System:}
     \begin{itemize}
-        \item Token-based authentication
-        \item Refresh token mechanism
-        \item Role-based access control
+        \item \textit{JWT Implementation:}
+        \begin{itemize}
+            \item Token generation và validation
+            \item Refresh token mechanism
+            \item Token revocation
+            \item Session management
+        \end{itemize}
+        \item \textit{Access Control:}
+        \begin{itemize}
+            \item Role-based permissions
+            \item Resource-level access
+            \item API authorization
+            \item Audit logging
+        \end{itemize}
     \end{itemize}
     
-    \item \textbf{Bảo mật dữ liệu:}
+    \item \textbf{Data Security:}
     \begin{itemize}
-        \item Mã hóa dữ liệu nhạy cảm
-        \item HTTPS cho API endpoints
-        \item Secure WebSocket cho real-time
-    \end{itemize}
-    
-    \item \textbf{Device Security:}
-    \begin{itemize}
-        \item Xác thực thiết bị với API key
-        \item Mã hóa kênh MQTT
-        \item Giới hạn quyền truy cập
+        \item \textit{Encryption:}
+        \begin{itemize}
+            \item AES-256 for data at rest
+            \item TLS 1.3 for transmission
+            \item Key management
+            \item Secure storage
+        \end{itemize}
+        \item \textit{Privacy Protection:}
+        \begin{itemize}
+            \item Data anonymization
+            \item GDPR compliance
+            \item Data retention policies
+            \item Consent management
+        \end{itemize}
     \end{itemize}
 \end{itemize}
 
@@ -84,23 +181,55 @@
 \begin{itemize}
     \item \textbf{Angular Framework:}
     \begin{itemize}
-        \item Component-based architecture
-        \item Reactive programming với RxJS
-        \item State management
-        \item Lazy loading modules
+        \item \textit{Architecture:}
+        \begin{itemize}
+            \item Modular design
+            \item Component hierarchy
+            \item Service injection
+            \item Routing system
+        \end{itemize}
+        \item \textit{State Management:}
+        \begin{itemize}
+            \item NgRx store
+            \item Effects handling
+            \item Action creators
+            \item Selectors
+        \end{itemize}
     \end{itemize}
     
     \item \textbf{Real-time Features:}
     \begin{itemize}
-        \item WebSocket cho cập nhật real-time
-        \item Server-Sent Events
-        \item Push notifications
+        \item \textit{WebSocket Implementation:}
+        \begin{itemize}
+            \item Socket.io integration
+            \item Event handling
+            \item Reconnection logic
+            \item Message queuing
+        \end{itemize}
+        \item \textit{Push Notifications:}
+        \begin{itemize}
+            \item Service Workers
+            \item Push API
+            \item Notification API
+            \item Background sync
+        \end{itemize}
     \end{itemize}
     
-    \item \textbf{UI/UX Design:}
+    \item \textbf{Progressive Enhancement:}
     \begin{itemize}
-        \item Material Design
-        \item Responsive layout
-        \item Progressive Web App (PWA)
+        \item \textit{PWA Features:}
+        \begin{itemize}
+            \item Offline support
+            \item App manifest
+            \item Cache strategies
+            \item Installation flow
+        \end{itemize}
+        \item \textit{Performance Optimization:}
+        \begin{itemize}
+            \item Lazy loading
+            \item Code splitting
+            \item Tree shaking
+            \item Bundle optimization
+        \end{itemize}
     \end{itemize}
 \end{itemize} 
