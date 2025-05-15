@@ -456,6 +456,59 @@ sequenceDiagram
     end
 ```
 
+7. S
+```mermaid
+sequenceDiagram
+    participant Client
+    participant API
+    participant UseCase
+    participant UserRepo
+    participant Storage
+    participant ImageProcessor
+
+    Client->>API: POST /api/v1/users/avatar
+    Note over Client,API: Body: multipart/form-data {avatar: File}
+    Note over Client,API: Headers: {Authorization: Bearer token}
+    
+    API->>UseCase: UpdateAvatar(ctx, scope, input)
+    
+    %% Verify Phase
+    UseCase->>UseCase: Validate file type
+    alt Invalid file type
+        UseCase-->>API: Error (Invalid file type)
+        API-->>Client: 400 Bad Request
+    end
+    
+    UseCase->>UseCase: Validate file size
+    alt File too large
+        UseCase-->>API: Error (File too large)
+        API-->>Client: 400 Bad Request
+    end
+    
+    %% Authenticate Phase
+    UseCase->>ImageProcessor: ProcessImage(file)
+    ImageProcessor-->>UseCase: Processed image
+    
+    UseCase->>Storage: UploadFile(processedImage)
+    Storage-->>UseCase: File URL
+    
+    %% Fetch Phase
+    UseCase->>UserRepo: GetOne(ctx, scope, userID)
+    UserRepo-->>UseCase: User details
+    
+    alt Has existing avatar
+        UseCase->>Storage: DeleteFile(oldAvatarURL)
+    end
+    
+    UseCase->>UserRepo: UpdateAvatar(ctx, scope, {userID, avatarURL})
+    UserRepo-->>UseCase: Updated user
+    
+    %% Process Phase
+    UseCase-->>API: Success
+    API-->>Client: 200 OK
+    Note over Client,API: Response: {user: {id, avatarURL, ...}}
+```
+
 ## Key Points
 
 ### Register API
